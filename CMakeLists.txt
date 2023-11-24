@@ -51,27 +51,7 @@ include_directories (${CMAKE_CURRENT_SOURCE_DIR})
 include_directories (${CMAKE_CURRENT_BINARY_DIR})
 
 # Platform specific source files
-if ("${CMAKE_SYSTEM_PROCESSOR}" MATCHES "i.86")
-    add_definitions ("-march=${CMAKE_SYSTEM_PROCESSOR} -mmmx -msse -msse2")
-    set (LIBFEC_MLIBS viterbi27_mmx.c mmxbfly27.s viterbi27_sse.c ssebfly27.s
-        viterbi27_sse2.c sse2bfly27.s viterbi29_mmx.c mmxbfly29.s
-        viterbi29_sse.c ssebfly29.s viterbi29_sse2.c sse2bfly29.s
-        viterbi39_sse2.c viterbi39_sse.c viterbi39_mmx.c viterbi615_mmx.c
-        viterbi615_sse.c viterbi615_sse2.c dotprod_mmx.c dotprod_mmx_assist.s
-        dotprod_sse2.c dotprod_sse2_assist.s peakval_mmx.c peakval_mmx_assist.s
-        peakval_sse.c peakval_sse_assist.s peakval_sse2.c peakval_sse2_assist.s
-        sumsq.c sumsq_port.c sumsq_sse2.c sumsq_sse2_assist.s sumsq_mmx.c
-        sumsq_mmx_assist.s cpu_features.s cpu_mode_x86.c)
-elseif ("${CMAKE_SYSTEM_PROCESSOR}" MATCHES "power.*")
-    add_definitions ("-fno-common -faltivec")
-    set (LIBFEC_MLIBS viterbi27_av.c viterbi29_av.c viterbi39_av.c
-        viterbi615_av.c	encode_rs_av.c dotprod_av.c sumsq_av.c peakval_av.c
-        cpu_mode_ppc.c)
-elseif ("${CMAKE_SYSTEM_PROCESSOR}" MATCHES "x86_64")
-    set (LIBFEC_MLIBS cpu_mode_unknown.c)
-else ()
-    set (LIBFEC_MLIBS cpu_mode_unknown.c)
-endif ()
+set (LIBFEC_MLIBS cpu_mode_unknown.c)
 
 # Generated source files
 add_executable (gen_ccsds gen_ccsds.c init_rs_char_local.c)
