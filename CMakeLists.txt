@@ -26,7 +26,7 @@ include (CheckLibraryExists)
 ################################################################################
 # Global flags
 
-add_definitions ("-Wall -fPIC")
+add_definitions ("-Wall")
 
 ################################################################################
 # Configuration tests
