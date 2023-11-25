@@ -15,6 +15,7 @@
 
 ################################################################################
 # Project options
+set(CMAKE_TOOLCHAIN_FILE /home/vboxuser/esp/esp-idf/tools/cmake/toolchain-esp32.cmake)
 
 cmake_minimum_required (VERSION 3.0)
 project (libfec C ASM)
@@ -27,7 +28,6 @@ include (CheckLibraryExists)
 # Global flags
 
 add_definitions ("-Wall")
-
 ################################################################################
 # Configuration tests
 
@@ -54,11 +54,11 @@ include_directories (${CMAKE_CURRENT_BINARY_DIR})
 set (LIBFEC_MLIBS cpu_mode_unknown.c)
 
 # Generated source files
-add_executable (gen_ccsds gen_ccsds.c init_rs_char_local.c)
-add_custom_command (OUTPUT ccsds_tab.c COMMAND gen_ccsds > ccsds_tab.c)
+#add_executable (gen_ccsds gen_ccsds.c init_rs_char_local.c)
+#add_custom_command (OUTPUT ccsds_tab.c COMMAND gen_ccsds > ccsds_tab.c)
 
-add_executable (gen_ccsds_tal gen_ccsds_tal.c)
-add_custom_command (OUTPUT ccsds_tal.c COMMAND gen_ccsds_tal > ccsds_tal.c)
+#add_executable (gen_ccsds_tal gen_ccsds_tal.c)
+#add_custom_command (OUTPUT ccsds_tal.c COMMAND gen_ccsds_tal > ccsds_tal.c)
 
 set (LIBFEC_GENLIBS ccsds_tal.c ccsds_tab.c)
 
@@ -81,29 +81,29 @@ install (FILES fec.h DESTINATION include)
 install (FILES simd-viterbi.3 rs.3 dsp.3 DESTINATION share/man/man3)
 
 # Additional executables for the test targets below.
-add_executable (vtest27 vtest27.c)
-target_link_libraries (vtest27 m fec)
+#add_executable (vtest27 vtest27.c)
+#target_link_libraries (vtest27 m fec)
 
-add_executable (vtest29 vtest29.c)
-target_link_libraries (vtest29 m fec)
+#add_executable (vtest29 vtest29.c)
+#target_link_libraries (vtest29 m fec)
 
-add_executable (vtest39 vtest39.c)
-target_link_libraries (vtest39 m fec)
+#add_executable (vtest39 vtest39.c)
+#target_link_libraries (vtest39 m fec)
 
-add_executable (vtest615 vtest615.c)
-target_link_libraries (vtest615 m fec)
+#add_executable (vtest615 vtest615.c)
+#target_link_libraries (vtest615 m fec)
 
-add_executable (rstest rstest.c)
-target_link_libraries (rstest m fec)
+#add_executable (rstest rstest.c)
+#target_link_libraries (rstest m fec)
 
-add_executable (dtest dtest.c)
-target_link_libraries (dtest m fec)
+#add_executable (dtest dtest.c)
+#target_link_libraries (dtest m fec)
 
-add_executable (sumsq_test sumsq_test.c)
-target_link_libraries (sumsq_test m fec)
+#add_executable (sumsq_test sumsq_test.c)
+#target_link_libraries (sumsq_test m fec)
 
-add_executable (peaktest peaktest.c)
-target_link_libraries (peaktest m fec)
+#add_executable (peaktest peaktest.c)
+#target_link_libraries (peaktest m fec)
 
 # These tests don't completely conform to the CMake convention of returning 0
 # for success and non-zero for failure. Some of their results are printed to
